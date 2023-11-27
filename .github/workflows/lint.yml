@@ -23,15 +23,17 @@ jobs:
       shell: bash
       run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
       id: extract_branch
-      
+    
+    - name: set user
+      run: |
+        git config --global user.name 'auto_linter_action'
+        git config --global user.email 'felixroland12355@users.noreply.github.com'
     - name: check changes
       run: git status
     - name: stage change
       run: git add .
     - name: commit changes
       run: git commit -m "Automatic Code Formatting"
-    - name: fetch from current branch
-      run: git fetch origin ${{ steps.extract_branch.outputs.branch }}
     - name: push changes
-      run: git push origin HEAD:${{ steps.extract_branch.outputs.branch }}
+      run: git push
       
