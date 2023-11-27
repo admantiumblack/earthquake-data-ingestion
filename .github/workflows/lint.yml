@@ -1,0 +1,37 @@
+name: Ruff
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: alpine
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+    steps:
+    - uses: actions/checkout@v3
+    - name: install dependancies
+      run: |
+        pip install -r requirements.txt
+        pip install ruff
+    - name: lint file
+      run: ruff check --fix .
+    - name: reformat code
+      run: ruff format .
+      
+    - name: Extract branch name
+      shell: bash
+      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      id: extract_branch
+      
+    - name: check changes
+      run: git status
+    - name: stage change
+      run: git add .
+    - name: commit changes
+      run: git commit -m "Automatic Code Formatting"
+    - name: fetch from current branch
+      run: git fetch origin ${{ steps.extract_branch.outputs.branch }}
+    - name: push changes
+      run: git push origin HEAD:${{ steps.extract_branch.outputs.branch }}
+      
