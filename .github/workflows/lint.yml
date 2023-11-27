@@ -18,11 +18,6 @@ jobs:
       run: ruff check --fix .
     - name: reformat code
       run: ruff format .
-      
-    - name: Extract branch name
-      shell: bash
-      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-      id: extract_branch
     
     - name: set user
       run: |
@@ -35,5 +30,9 @@ jobs:
     - name: commit changes
       run: git commit -m "Automatic Code Formatting"
     - name: push changes
-      run: git push
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.PAT }}
+        branch: ${{ github.ref }}
+        directory: .
       
