@@ -28,7 +28,7 @@ jobs:
     - name: stage change
       run: git add .
     - name: commit changes
-      run: git commit -m "Automatic Code Formatting"
+      run: git commit -m "Automatic Code Formatting" || echo "no changes"
     - name: push changes
       uses: ad-m/github-push-action@master
       with:
