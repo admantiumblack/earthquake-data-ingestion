@@ -1,22 +1,8 @@
 from requests import get
 from typing import Dict
 from datetime import datetime
-from abc import ABC, abstractmethod
+from extraction.source import DataSource
 
-
-class DataSource(ABC):
-    def __init__(self, validator=None) -> None:
-        self.validator = validator
-
-    @property
-    @abstractmethod
-    def data(self):
-        pass
-
-    @property
-    @abstractmethod
-    def clean_data(self):
-        pass
 
 
 class APIDataSource(DataSource):
