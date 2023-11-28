@@ -1,4 +1,4 @@
-FROM python:3.9.18-alpine as build
+FROM python:3.12-alpine as build
 RUN apk update && apk add binutils
 WORKDIR /app
 COPY ./requirements.txt ./requirements.txt
