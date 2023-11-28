@@ -1,16 +1,19 @@
 from requests import get
-from typing import Dict
+from typing import Dict, Union
 from datetime import datetime
 from extraction.source import DataSource
 
 
 class APIDataSource(DataSource):
-    def __init__(self, url, validator=None) -> None:
+    def __init__(self, url, default_param:Dict=dict(), validator=None) -> None:
         super().__init__(validator)
+        self.default_param = default_param
         self.url = url
 
-    def query_source(self, parameters: Dict[int | str | datetime]) -> None:
-        response = get(self.url, parameters)
+    def query_source(self, parameters: Dict[str, str | datetime | int]) -> DataSource:
+        query_parameters = self.default_param.copy()
+        query_parameters.update(parameters)
+        response = get(self.url, query_parameters)
 
         if response.status_code != 200:
             raise RuntimeError(f"{self.url} data query failed")
