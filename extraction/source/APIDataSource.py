@@ -4,7 +4,6 @@ from datetime import datetime
 from extraction.source import DataSource
 
 
-
 class APIDataSource(DataSource):
     def __init__(self, url, validator=None) -> None:
         super().__init__(validator)
