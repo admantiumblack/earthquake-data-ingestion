@@ -18,4 +18,4 @@ services:
     image: oittaa/gcp-storage-emulator
     entrypoint: gcp-storage-emulator start --host=localhost --port=9023 --default-bucket=earthquake_bucket
     volumes:
-      - ./storage:/.cloudstorage
+      - ./.storage:/.cloudstorage
