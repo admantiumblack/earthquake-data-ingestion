@@ -10,6 +10,10 @@ class DataSource(ABC):
     def data(self):
         pass
 
+    @abstractmethod
+    def validate(self):
+        pass
+    
     @property
     @abstractmethod
     def clean_data(self):
