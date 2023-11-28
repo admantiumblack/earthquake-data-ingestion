@@ -1,13 +1,14 @@
-version: 3.8
+version: "3.8"
 
 services:
   ingestion:
-    build: .
-    target: deploy
+    build:
+      context: .
+      target: deploy
     links:
-      storage_emulator
+      - storage_emulator
     depends_on:
-      storage_emulator
+      - storage_emulator
     environment:
       STORAGE_HOST: storage_emulator
       STORAGE_PORT: 9023
@@ -17,4 +18,4 @@ services:
     image: oittaa/gcp-storage-emulator
     entrypoint: gcp-storage-emulator start --host=localhost --port=9023 --default-bucket=earthquake_bucket
     volumes:
-      ./storage:/.cloudstorage
+      - ./storage:/.cloudstorage
