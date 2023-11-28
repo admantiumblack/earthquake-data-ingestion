@@ -1,6 +1,7 @@
 import argparse
 import os
 from datetime import datetime
+from extraction import get_earthquake_data_source
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -14,3 +15,5 @@ if __name__ == "__main__":
         "-f", "--format", default="parquet", choices=["parquet", "csv", "excel"]
     )
     parser.add_argument("-n", "--name", default=f"{datetime.now()}")
+    
+    api_source = get_earthquake_data_source()
