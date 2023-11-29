@@ -1,7 +1,11 @@
 from extraction.source import APIDataSource
-import os
+from utils.path_parser import resolve_path
+import yaml
 
 
-def get_earthquake_data_source():
-    url = os.environ["EARTHQUAKE_URL"]
-    return APIDataSource(url, default_param={'format':'geojson'})
+def get_data_source(source:str|dict[str, str|dict]):
+    if isinstance(source, str):
+        with open(resolve_path(f'extraction/api_sources/{source}.yaml'), 'r') as f:
+            source = yaml.safe_load(f)
+    
+    return APIDataSource(**source)
