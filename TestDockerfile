@@ -1,0 +1,10 @@
+FROM python:3.12-alpine
+RUN apk update
+WORKDIR /app
+COPY ./requirements.txt ./requirements.txt
+RUN pip install -r requirements.txt
+COPY ./test_requirements.txt ./test_requirements.txt
+RUN pip install -r test_requirements.txt
+COPY ./ ./
+ENTRYPOINT ["pytest", "."]
+CMD ["--doctest-modules", "--junitxml=junit/test-results.xml", "--cov=com", "--cov-report=xml", "--cov-report=html"]

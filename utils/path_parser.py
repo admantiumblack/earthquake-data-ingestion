@@ -9,4 +9,4 @@ def get_root_directory():
         return Path(sys.modules['__main__'].__file__)
 
 def resolve_path(file_name):
-    return get_root_directory / file_name
+    return get_root_directory() / file_name
