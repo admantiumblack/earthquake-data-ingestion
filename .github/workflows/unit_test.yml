@@ -17,4 +17,6 @@ jobs:
 
     - name: Test with pytest
       run: |
-        coverage run -m pytest --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+        pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
+    - name: Show unit test coverage
+      run: coverage report -m
