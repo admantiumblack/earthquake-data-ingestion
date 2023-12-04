@@ -1,0 +1,147 @@
+{
+    "features": {
+        "type": "list",
+        "schema": {
+            "type": "dict",
+            "schema": {
+                "properties": {
+                    "type": "dict",
+                    "schema": {
+                        "mag": {
+                            "type": "float",
+                            "required": true,
+                            "rename": "magnitude"
+                        },
+                        "place": {
+                            "type": "string"
+                        },
+                        "time": {
+                            "type": "integer"
+                        },
+                        "updated": {
+                            "type": "integer"
+                        },
+                        "tz": {
+                            "type": "integer",
+                            "min": -1200,
+                            "max": 1200,
+                            "nullable": true,
+                            "rename": "timezone"
+                        },
+                        "url": {
+                            "type": "string"
+                        },
+                        "detail": {
+                            "type": "string"
+                        },
+                        "felt": {
+                            "type": "integer"
+                        },
+                        "cdi": {
+                            "type": "float"
+                        },
+                        "mmi": {
+                            "type": "float"
+                        },
+                        "alert": {
+                            "type": "string",
+                            "allowed": ["green", "yellow", "orange", "red"],
+                            "nullable": true
+                        },
+                        "status": {
+                            "type": "string",
+                            "allowed": ["automatic", "reviewed", "deleted"],
+                            "rename": "review_status"
+                        },
+                        "tsunami": {
+                            "type": "boolean",
+                            "rename": "ocean_earthquake"
+                        },
+                        "sig": {
+                            "type": "integer",
+                            "rename": "significance"
+                        },
+                        "net": {
+                            "type": "string",
+                            "allowed": [
+                                "ak", 
+                                "at", 
+                                "ci", 
+                                "hv", 
+                                "ld", 
+                                "mb", 
+                                "nc", 
+                                "nm", 
+                                "nn", 
+                                "pr", 
+                                "pt", 
+                                "se", 
+                                "us", 
+                                "uu", 
+                                "uw"
+                            ],
+                            "rename": "prefered_data_source"
+                        },
+                        "code": {
+                            "type": "string"
+                        },
+                        "ids": {
+                            "type": "string",
+                            "rename": "event_ids"
+                        },
+                        "sources": {
+                            "type": "string",
+                            "rename": "data_source"
+                        },
+                        "types": {
+                            "type": "string"
+                        },
+                        "nst": {
+                            "type": "integer",
+                            "rename": "seismic_station_number"
+                        },
+                        "dmin": {
+                            "type": "float",
+                            "rename": "horizontal_distance_degree"
+                        },
+                        "rms": {
+                            "type": "float",
+                            "rename": "root_mean_square"
+                        },
+                        "gap": {
+                            "type": "number"
+                        },
+                        "magType": {
+                            "type": "string",
+                            "allowed": [
+                                "Md", 
+                                "Ml", 
+                                "Ms", 
+                                "Mw", 
+                                "Me", 
+                                "Mi", 
+                                "Mb", 
+                                "MLg" 
+                            ],
+                            "rename": "preferred_calculation_algorithm"
+                        },
+                        "type": {
+                            "type": "string",
+                            "allowed": ["earthquake", "quarry"]
+                        },
+                        "title": {
+                            "type": "string",
+                            "rename": "feed_title"
+                        }
+                    }
+                },
+                "geometry": {
+                    "type": "dict",
+                    "schema": {
+                        "coordinates": {"type": "list", "schema": {"type":"integer"}, "required": true}
+                    }
+                }
+            }
+        }
+    }
+}
