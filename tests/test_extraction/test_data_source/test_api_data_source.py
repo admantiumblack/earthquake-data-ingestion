@@ -64,7 +64,7 @@ class TestAPIDataSource:
         res = self.data_source.query_source().validate()
 
         assert res == self.data_source
-        assert self.data_source.data_valid == True
+        assert self.data_source.data_valid
     
     def test_validate_no_data(self, setup):
         with pytest.raises(AttributeError):
