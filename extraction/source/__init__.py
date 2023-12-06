@@ -1,2 +1,2 @@
-from extraction.source.DataSource import DataSource
-from extraction.source.APIDataSource import APIDataSource
+from extraction.source.data_source import DataSource
+from extraction.source.api_data_source import APIDataSource

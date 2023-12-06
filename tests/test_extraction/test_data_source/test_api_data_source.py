@@ -1,7 +1,7 @@
 import pytest
 from pytest_mock import MockerFixture
 from extraction.source import APIDataSource
-from extraction.source.APIDataSource import get
+from extraction.source.api_data_source import get
 
 
 class TestAPIDataSource:
@@ -35,7 +35,7 @@ class TestAPIDataSource:
                 }
             }
             mock_response.configure_mock(**response_properties)
-            self.get = mocker.patch('extraction.source.APIDataSource.get', return_value=mock_response)
+            self.get = mocker.patch('extraction.source.api_data_source.get', return_value=mock_response)
             return mock_response
         return response_factory
 
