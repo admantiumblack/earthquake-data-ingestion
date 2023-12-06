@@ -49,9 +49,9 @@ class TestAPIDataSource:
         assert res == self.data_source
     
     def test_failed_query(self, setup, mock_request):
-        mock_response = mock_request(False)
+        _ = mock_request(False)
         with pytest.raises(RuntimeError):
-            res = self.data_source.query_source({'test': 'not_test'})
+            _ = self.data_source.query_source({'test': 'not_test'})
     
     
     def test_data_property_not_set(self, setup):
@@ -68,7 +68,7 @@ class TestAPIDataSource:
     
     def test_validate_no_data(self, setup):
         with pytest.raises(AttributeError):
-            res = self.data_source.validate()
+            _ = self.data_source.validate()
     
     def test_clean_data(self, setup):
         self.data_source.data_valid = True
@@ -78,8 +78,8 @@ class TestAPIDataSource:
     def test_invalid_clean_data(self, setup):
         self.data_source.data_valid = False
         with pytest.raises(RuntimeError):
-            res = self.data_source.clean_data
+            _ = self.data_source.clean_data
     
     def test_clean_data_no_validation(self, setup):
         with pytest.raises(AttributeError):
-            res = self.data_source.clean_data
+            _ = self.data_source.clean_data
