@@ -2,9 +2,12 @@ import argparse
 import os
 from datetime import datetime
 from extraction import get_data_source
+from validation import create_validator
 
 def main(arguments):
-    api_source = get_data_source('earthquake')
+    api_source = get_data_source(arguments.type)
+    validator = create_validator(arguments.type)
+    api_source.validator = validator
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
