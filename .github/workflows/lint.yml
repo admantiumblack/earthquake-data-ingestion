@@ -20,7 +20,7 @@ jobs:
       uses: jitterbit/get-changed-files@v1
     - name: lint and reformat code
       run: |
-        ruff check $(git diff --name-only --cached -- '*.py')
+        ruff check $(git diff --name-only --cached -- '*.py') --fix
         ruff format $(git diff --name-only --cached -- '*.py')
     
     - name: set user
