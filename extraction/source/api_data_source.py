@@ -1,16 +1,18 @@
 from requests import get
-from typing import Dict, Union
+from typing import Dict
 from datetime import datetime
 from extraction.source import DataSource
 
 
 class APIDataSource(DataSource):
-    def __init__(self, url, default_param:Dict=dict(), validator=None) -> None:
+    def __init__(self, url, default_param: Dict = dict(), validator=None) -> None:
         super().__init__(validator)
         self.default_param = default_param
         self.url = url
 
-    def query_source(self, parameters: Dict[str, str | datetime | int]=dict()) -> DataSource:
+    def query_source(
+        self, parameters: Dict[str, str | datetime | int] = dict()
+    ) -> DataSource:
         query_parameters = self.default_param.copy()
         query_parameters.update(parameters)
         response = get(self.url, query_parameters)
