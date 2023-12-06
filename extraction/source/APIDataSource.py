@@ -10,7 +10,7 @@ class APIDataSource(DataSource):
         self.default_param = default_param
         self.url = url
 
-    def query_source(self, parameters: Dict[str, str | datetime | int]) -> DataSource:
+    def query_source(self, parameters: Dict[str, str | datetime | int]=dict()) -> DataSource:
         query_parameters = self.default_param.copy()
         query_parameters.update(parameters)
         response = get(self.url, query_parameters)
@@ -24,15 +24,15 @@ class APIDataSource(DataSource):
     @property
     def data(self):
         try:
-            return self.__data
-        except NameError:
-            raise NameError("data has not been fetched")
+            return self.__data.copy()
+        except AttributeError:
+            raise AttributeError("data has not been fetched")
 
     def validate(self):
         try:
             self.data_valid = self.validator.validate(self.__data)
-        except NameError:
-            raise NameError("data has not been fetched")
+        except AttributeError:
+            raise AttributeError("data has not been fetched")
 
         return self
 
@@ -41,7 +41,7 @@ class APIDataSource(DataSource):
         try:
             if not self.data_valid:
                 raise RuntimeError("data invalid")
-        except NameError:
-            raise NameError("data is not validated")
+        except AttributeError:
+            raise AttributeError("data is not validated")
 
         return self.validator.document
