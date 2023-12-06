@@ -20,10 +20,8 @@ jobs:
       uses: jitterbit/get-changed-files@v1
     - name: lint and reformat code
       run: |
-        for changed_file in ${{ steps.files.output.all }}; do
-          ruff check --fix $changed_file
-          ruff format $changed_file
-        done
+        ruff check $(git diff --name-only --cached -- '*.py')
+        ruff format $(git diff --name-only --cached -- '*.py')
     
     - name: set user
       run: |
