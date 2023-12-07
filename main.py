@@ -25,6 +25,6 @@ if __name__ == "__main__":
         "-f", "--format", default="parquet", choices=["parquet", "csv", "excel"]
     )
     parser.add_argument("-n", "--name", default=f"{datetime.now()}")
-    parser.add_argument("-s", "--storage", default=f"gcs", choices=['gcs', 's3'])
+    parser.add_argument("-s", "--storage", default="gcs", choices=["gcs", "s3"])
 
     main(parser.parse_args())
