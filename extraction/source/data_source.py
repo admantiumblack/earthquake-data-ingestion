@@ -13,7 +13,7 @@ class DataSource(ABC):
     @abstractmethod
     def validate(self):
         pass
-    
+
     @property
     @abstractmethod
     def clean_data(self):
