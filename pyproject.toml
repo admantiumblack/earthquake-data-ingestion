@@ -28,6 +28,7 @@ exclude = [
     "dist",
     "node_modules",
     "venv",
+    "*__init__.py",
 ]
 
 fixable = ["ALL"]
