@@ -11,6 +11,7 @@ def main(arguments):
     api_source.validator = validator
 
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog="earthquake_ingestion",
