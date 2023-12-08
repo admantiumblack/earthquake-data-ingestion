@@ -15,10 +15,10 @@ class TestAPIDataSource:
         self.default_params = {"test": "test", "date": "2022-12-12"}
 
         self.data_source = APIDataSource(
-            self.url, self.default_params, self.mock_validator, parameter_mapping={
-                'test':'testing',
-                'test1': 'test2'
-            }
+            self.url,
+            self.default_params,
+            self.mock_validator,
+            parameter_mapping={"test": "testing", "test1": "test2"},
         )
 
     @pytest.fixture
@@ -45,23 +45,16 @@ class TestAPIDataSource:
         self.get.assert_called_once_with(self.url, self.default_params)
         mock_response.json.assert_called_once()
         assert res == self.data_source
-    
+
     def test_contruct_parameter(self, setup, mocker):
         namespace = mocker.MagicMock()
-        namespace.testing = 'hello'
-        namespace.test2 = 'world'
-        parameter = {
-            'hello': 'hello'
-        }
+        namespace.testing = "hello"
+        namespace.test2 = "world"
+        parameter = {"hello": "hello"}
         parameter = self.data_source.construct_parameter(namespace, parameter)
 
-        expected_result = {
-            'hello': 'hello',
-            'test': 'hello',
-            'test1': 'world'
-        }
+        expected_result = {"hello": "hello", "test": "hello", "test1": "world"}
         assert expected_result == parameter
-
 
     def test_failed_query(self, setup, mock_request):
         _ = mock_request(False)

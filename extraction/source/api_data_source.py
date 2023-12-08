@@ -5,16 +5,20 @@ from extraction.source import DataSource
 
 
 class APIDataSource(DataSource):
-    def __init__(self, url, default_param: Dict = dict(), validator=None, *, parameter_mapping={}) -> None:
+    def __init__(
+        self, url, default_param: Dict = dict(), validator=None, *, parameter_mapping={}
+    ) -> None:
         super().__init__(validator)
         self.default_param = default_param
         self.url = url
         self.parameter_mapping = parameter_mapping
-    
+
     def construct_parameter(self, namespace, parameter={}):
         for parameter_name in self.parameter_mapping:
             if hasattr(namespace, self.parameter_mapping[parameter_name]):
-                parameter[parameter_name] = getattr(namespace, self.parameter_mapping[parameter_name])
+                parameter[parameter_name] = getattr(
+                    namespace, self.parameter_mapping[parameter_name]
+                )
         return parameter
 
     def query_source(
