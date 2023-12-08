@@ -5,10 +5,17 @@ from extraction.source import DataSource
 
 
 class APIDataSource(DataSource):
-    def __init__(self, url, default_param: Dict = dict(), validator=None) -> None:
+    def __init__(self, url, default_param: Dict = dict(), validator=None, *, parameter_mapping={}) -> None:
         super().__init__(validator)
         self.default_param = default_param
         self.url = url
+        self.parameter_mapping = parameter_mapping
+    
+    def construct_parameter(self, namespaces, parameter={}):
+        for parameter_name in self.parameter_mapping:
+            if hasattr(namespaces, self.parameter_mapping[parameter_name]):
+                parameter[parameter_name] = getattr(namespaces, self.parameter_mapping[parameter_name])
+        return parameter
 
     def query_source(
         self, parameters: Dict[str, str | datetime | int] = dict()
@@ -30,7 +37,7 @@ class APIDataSource(DataSource):
         except AttributeError:
             raise AttributeError("data has not been fetched")
 
-    def validate(self):
+    def validate(self) -> DataSource:
         try:
             self.data_valid = self.validator.validate(self.__data)
         except AttributeError:
