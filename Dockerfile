@@ -1,3 +1,12 @@
+FROM python:3.12-alpine as test
+RUN apk update
+WORKDIR /app
+COPY ./requirements.txt ./requirements.txt
+RUN pip install -r requirements.txt
+COPY ./ ./
+ENTRYPOINT ["pytest", "."]
+CMD ["--doctest-modules", "--junitxml=junit/test-results.xml", "--cov=.", "--cov-report=xml", "--cov-report=html"]
+
 FROM python:3.12-alpine as build
 RUN apk update && apk add binutils
 WORKDIR /app
