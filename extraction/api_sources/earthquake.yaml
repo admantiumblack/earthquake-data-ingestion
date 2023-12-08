@@ -3,3 +3,6 @@ url: "https://earthquake.usgs.gov/fdsnws/event/1/query"
 defaults:
   format: "geojson"
   orderby: "time-asc"
+parameter_mapping:
+  starttime: "start_date"
+  endtime: "end_date"
