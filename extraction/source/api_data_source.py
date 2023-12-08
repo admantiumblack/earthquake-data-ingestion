@@ -11,10 +11,10 @@ class APIDataSource(DataSource):
         self.url = url
         self.parameter_mapping = parameter_mapping
     
-    def construct_parameter(self, namespaces, parameter={}):
+    def construct_parameter(self, namespace, parameter={}):
         for parameter_name in self.parameter_mapping:
-            if hasattr(namespaces, self.parameter_mapping[parameter_name]):
-                parameter[parameter_name] = getattr(namespaces, self.parameter_mapping[parameter_name])
+            if hasattr(namespace, self.parameter_mapping[parameter_name]):
+                parameter[parameter_name] = getattr(namespace, self.parameter_mapping[parameter_name])
         return parameter
 
     def query_source(
