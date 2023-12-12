@@ -10,9 +10,7 @@ services:
     depends_on:
       - storage_emulator
     environment:
-      STORAGE_HOST: storage_emulator
-      STORAGE_PORT: 9023
-      DEFAULT_BUCKET: earthquake_bucket
+      STORAGE_EMULATOR_HOST="https://storage_emulator:9023"
   storage_emulator:
     image: oittaa/gcp-storage-emulator
     entrypoint: gcp-storage-emulator start --host=localhost --port=9023 --default-bucket=earthquake_bucket

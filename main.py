@@ -3,12 +3,19 @@ import os
 from datetime import datetime
 from extraction import get_data_source
 from validation import create_validator
+from process import Pipeline
 
 
 def main(arguments):
-    api_source = get_data_source(arguments.type)
-    validator = create_validator(arguments.type)
-    api_source.validator = validator
+    pass
+    # api_source = get_data_source(arguments.type)
+    # validator = create_validator(arguments.type)
+    # api_source.validator = validator
+    # parameter = api_source.construct_parameter(arguments)
+    # data = api_source.query_source(parameter).validate().clean_data
+    # pipeline = Pipeline(arguments.type)
+    # result = pipeline.run(data)
+    
 
 
 if __name__ == "__main__":
