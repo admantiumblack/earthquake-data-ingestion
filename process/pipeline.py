@@ -41,8 +41,8 @@ class Pipeline:
                 source_file = resolve_path(f"process/config/{process}.yaml")
                 with open(source_file, "r") as f:
                     process_definitions = yaml.safe_load(f)
-            except:
-                raise RuntimeError('Config file not count')
+            except OSError:
+                raise FileNotFoundError('Config file not count')
 
             return parse_steps(process_definitions)
             
