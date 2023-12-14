@@ -1,6 +1,6 @@
 import yaml
+from process.parser import parse_steps
 from utils.path_parser import resolve_path
-from process.steps import parse_steps
 
 
 class Pipeline:

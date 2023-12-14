@@ -1,6 +1,6 @@
 import pytest
 from pytest_mock import MockerFixture
-from process.steps.parser import parse_steps
+from process.parser import parse_steps
 
 
 @pytest.fixture
@@ -12,7 +12,7 @@ def mock_steps(mocker: MockerFixture):
             mock_process.return_value = step_list[i]
             setattr(mock_step, i, mock_process)
 
-        mock_step = mocker.patch("process.steps.parser.steps", mock_step)
+        mock_step = mocker.patch("process.parser.steps", mock_step)
         return mock_step
 
     return step_mocker
