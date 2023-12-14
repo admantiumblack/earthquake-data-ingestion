@@ -15,7 +15,10 @@ class Pipeline:
                 params = []
                 for dependancy in process.dependancy:
                     try:
-                        params.extend(self.results[dependancy])
+                        if isinstance(self.results[dependancy], (list, tuple)):
+                            params.extend(self.results[dependancy])
+                        else:
+                            params.append(self.results[dependancy])
                     except KeyError:
                         raise RuntimeError(
                             "Dependancy must be from previously executed process"
