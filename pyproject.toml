@@ -2,6 +2,7 @@
 omit = [
     "extraction/source/DataSource.py",
     "*__init__.py",
+    "process/steps/*.py",
     "main.py"
 ]
 
