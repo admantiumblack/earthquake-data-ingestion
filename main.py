@@ -1,9 +1,6 @@
 import argparse
 import os
 from datetime import datetime
-from extraction import get_data_source
-from validation import create_validator
-from process import Pipeline
 
 
 def main(arguments):
@@ -15,7 +12,6 @@ def main(arguments):
     # data = api_source.query_source(parameter).validate().clean_data
     # pipeline = Pipeline(arguments.type)
     # result = pipeline.run(data)
-    
 
 
 if __name__ == "__main__":
