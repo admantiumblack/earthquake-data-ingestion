@@ -5,15 +5,15 @@ from utils.path_parser import resolve_path
 
 class Pipeline:
     def __init__(self, process: list | str):
-        self.__process = self.__initialize_process(process)
+        self._process = self.__initialize_process(process)
         self.results = {}
 
     def run(self, data):
         res = data
-        for process in self.__process:
-            if process.dependancy:
-                params = []
-                for dependancy in process.dependancy:
+        for step in self._process:
+            params = []
+            if step.dependancy:
+                for dependancy in step.dependancy:
                     try:
                         if isinstance(self.results[dependancy], (list, tuple)):
                             params.extend(self.results[dependancy])
@@ -24,21 +24,21 @@ class Pipeline:
                             "Dependancy must be from previously executed process"
                         )
             else:
-                params = res
-            res = process(*params)
-            self.results[process.name] = res
-        return res[0]
+                params.append(res)
+            res = step(*params)
+            self.results[step.name] = res
+        return res
 
     @property
     def process(self):
-        return self.__process.copy()
+        return self._process.copy()
 
     @process.setter
-    def set_process(self, new_process):
-        if not isinstance(new_process, (list, str)):
+    def process(self, process):
+        if not isinstance(process, (list, str)):
             raise ValueError("Process must be a list or pipeline definition file")
 
-        self.__process = self.__initialize_process(new_process)
+        self._process = self.__initialize_process(process)
 
     def __initialize_process(self, process):
         if isinstance(process, str):
