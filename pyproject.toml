@@ -1,6 +1,6 @@
 [tool.coverage.run]
 omit = [
-    "extraction/source/DataSource.py",
+    "extraction/source/data_source.py",
     "*__init__.py",
     "process/steps/*.py",
     "main.py"
