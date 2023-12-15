@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class DataSource(ABC):
+class DataSource(ABC): #pragma: no cover
     def __init__(self, validator=None) -> None:
         self.validator = validator
 
