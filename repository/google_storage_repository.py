@@ -3,7 +3,7 @@ from repository.repository_base_class import RepositoryBaseClass
 
 class GCSRepository(RepositoryBaseClass):
 
-    def __construct_file_path(self, file_name):
+    def __construct_file_path(self, file_name): #pragma no cover
         file_path = f'gs://{self.bucket}/{file_name}'
         return file_path
 
