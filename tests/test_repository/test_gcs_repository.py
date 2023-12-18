@@ -40,7 +40,7 @@ class TestGCSRepository:
 
     def test_invalid_data_object(self, mocker: MockerFixture):
         bucket_name = "test_bucket"
-        data = mocker.MagicMock()
+        data = mocker.MagicMock(spec_set=[])
         file_name = 'test.csv'
 
         repository = GCSRepository(bucket_name)
