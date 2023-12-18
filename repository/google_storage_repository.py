@@ -20,4 +20,4 @@ class GCSRepository(RepositoryBaseClass):
         try:
             getattr(data, method_name)(file_path, **kwargs)
         except AttributeError:
-            raise ValueError('data must be pandas dataframe object')
+            raise ValueError("data must be pandas dataframe object")
