@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 import pandas as pd
 
-class RepositoryBaseClass(ABC): #pragma: no cover
 
+class RepositoryBaseClass(ABC):  # pragma: no cover
     def __init__(self, bucket):
         self.bucket = bucket
     
