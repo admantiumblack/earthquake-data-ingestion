@@ -41,7 +41,7 @@ class TestGCSRepository:
     def test_invalid_data_object(self, mocker:MockerFixture):
         bucket_name = 'test_bucket'
         data = mocker.MagicMock()
-        file_name = 'test.docs'
+        file_name = 'test.csv'
 
         repository = GCSRepository(bucket_name)
         with pytest.raises(ValueError, match='data must be pandas dataframe object'):
