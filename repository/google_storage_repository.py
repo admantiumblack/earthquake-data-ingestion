@@ -11,9 +11,13 @@ class GCSRepository(RepositoryBaseClass):
 
         if file_type is None:
             file_type = file_path.split(".")[-1]
+        method_name = None
         try:
             method_name = self._get_method_name(file_type)
         except KeyError:
             raise ValueError("Invalid file type")
 
-        getattr(data, method_name)(file_path, **kwargs)
+        try:
+            getattr(data, method_name)(file_path, **kwargs)
+        except AttributeError:
+            raise ValueError('data must be pandas dataframe object')
