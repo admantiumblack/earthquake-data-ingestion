@@ -12,7 +12,12 @@ class TestHelper:
             return_value=Path("/ingestion/extraction/api_sources/test.yaml"),
         )
         self.mocked_safe_load = mocker.patch(
-            "extraction.extract.yaml.safe_load", return_value={"url": "test", 'defaults':{"test":'test'}, "parameter_mapping":{"test":'test'}}
+            "extraction.extract.yaml.safe_load",
+            return_value={
+                "url": "test",
+                "defaults": {"test": "test"},
+                "parameter_mapping": {"test": "test"},
+            },
         )
         self.mocked_data_source = mocker.patch("extraction.extract.APIDataSource")
         mocked_extraction = mocker.mock_open(read_data="test")
@@ -37,4 +42,6 @@ class TestHelper:
         }
         _ = get_data_source(data_source_details)
 
-        self.mocked_data_source.assert_called_once_with('test_mock.com', default_param={"test": "test"}, parameter_mapping={})
+        self.mocked_data_source.assert_called_once_with(
+            "test_mock.com", default_param={"test": "test"}, parameter_mapping={}
+        )
