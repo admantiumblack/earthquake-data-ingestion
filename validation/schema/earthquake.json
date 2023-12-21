@@ -8,18 +8,21 @@
                     "type": "dict",
                     "schema": {
                         "mag": {
-                            "type": "float",
-                            "required": true,
+                            "type": "number",
+                            
                             "rename": "magnitude"
                         },
                         "place": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable":true
                         },
                         "time": {
-                            "type": "integer"
+                            "type": "integer",
+                            "nullable": true
                         },
                         "updated": {
-                            "type": "integer"
+                            "type": "integer",
+                            "nullable":true
                         },
                         "tz": {
                             "type": "integer",
@@ -29,19 +32,24 @@
                             "rename": "timezone"
                         },
                         "url": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable":true
                         },
                         "detail": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable":true
                         },
                         "felt": {
-                            "type": "integer"
+                            "type": "integer",
+                            "nullable":true
                         },
                         "cdi": {
-                            "type": "float"
+                            "type": "float",
+                            "nullable":true
                         },
                         "mmi": {
-                            "type": "float"
+                            "type": "float",
+                            "nullable":true
                         },
                         "alert": {
                             "type": "string",
@@ -51,15 +59,19 @@
                         "status": {
                             "type": "string",
                             "allowed": ["automatic", "reviewed", "deleted"],
-                            "rename": "review_status"
+                            "rename": "review_status",
+                            "nullable":true
                         },
                         "tsunami": {
-                            "type": "boolean",
-                            "rename": "ocean_earthquake"
+                            "type": "integer",
+                            "rename": "ocean_earthquake",
+                            "allowed":[0,1],
+                            "nullable":true
                         },
                         "sig": {
                             "type": "integer",
-                            "rename": "significance"
+                            "rename": "significance",
+                            "nullable":true
                         },
                         "net": {
                             "type": "string",
@@ -80,36 +92,45 @@
                                 "uu", 
                                 "uw"
                             ],
-                            "rename": "prefered_data_source"
+                            "rename": "prefered_data_source",
+                            "nullable":true
                         },
                         "code": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable":true
                         },
                         "ids": {
                             "type": "string",
-                            "rename": "event_ids"
+                            "rename": "event_ids",
+                            "nullable":true
                         },
                         "sources": {
                             "type": "string",
-                            "rename": "data_source"
+                            "rename": "data_source",
+                            "nullable":true
                         },
                         "types": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable":true
                         },
                         "nst": {
                             "type": "integer",
-                            "rename": "seismic_station_number"
+                            "rename": "seismic_station_number",
+                            "nullable":true
                         },
                         "dmin": {
                             "type": "float",
-                            "rename": "horizontal_distance_degree"
+                            "rename": "horizontal_distance_degree",
+                            "nullable":true
                         },
                         "rms": {
                             "type": "float",
-                            "rename": "root_mean_square"
+                            "rename": "root_mean_square",
+                            "nullable":true
                         },
                         "gap": {
-                            "type": "number"
+                            "type": "number",
+                            "nullable":true
                         },
                         "magType": {
                             "type": "string",
@@ -123,22 +144,24 @@
                                 "Mb", 
                                 "MLg" 
                             ],
-                            "rename": "preferred_calculation_algorithm"
+                            "rename": "preferred_calculation_algorithm",
+                            "nullable":true
                         },
                         "type": {
                             "type": "string",
-                            "allowed": ["earthquake", "quarry"]
+                            "nullable":true
                         },
                         "title": {
                             "type": "string",
-                            "rename": "feed_title"
+                            "rename": "feed_title",
+                            "nullable":true
                         }
                     }
                 },
                 "geometry": {
                     "type": "dict",
                     "schema": {
-                        "coordinates": {"type": "list", "schema": {"type":"integer"}, "required": true}
+                        "coordinates": {"type": "list", "schema": {"type":"number"}, "required": true}
                     }
                 }
             }

@@ -9,4 +9,8 @@ def get_data_source(source: str | dict[str, str | dict]):
         with open(source_file, "r") as f:
             source = yaml.safe_load(f)
 
-    return APIDataSource(**source)
+    return APIDataSource(
+        source['url'],
+        default_param=source.get('defaults', dict()),
+        parameter_mapping=source.get('parameter_mapping', dict())
+    )

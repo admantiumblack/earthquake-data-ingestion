@@ -1,7 +1,7 @@
 name: earthquake
 steps:
 - name: reformat
-  run: reformat.reformat_earthquake
+  run: reformat_earthquake
 - name: convert_dataframe
-  run: convert.to_dataframe
+  run: to_dataframe
   
