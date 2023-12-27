@@ -17,16 +17,18 @@ def mock_steps(mocker: MockerFixture):
 
     return step_mocker
 
+
 @pytest.fixture
 def step_definitions():
     return {
-        "name":'test',
-        'steps':[
+        "name": "test",
+        "steps": [
             {"run": "test", "name": "test"},
             {"run": "test1", "name": "test1", "dependancy": ["test"]},
             {"run": "test2", "name": "test2", "parameters": ["test", "test", "test"]},
-        ]
+        ],
     }
+
 
 def test_valid_parsing(mock_steps, step_definitions):
     steps_to_mock = {"test": "test", "test1": "test1", "test2": "test2"}
