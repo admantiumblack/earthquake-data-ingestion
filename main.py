@@ -17,7 +17,6 @@ def main(arguments):
     result = pipeline.run(data)
     repository = GCSRepository(arguments.bucket)
     repository.save(result, arguments.name, arguments.format)
-    
 
 
 if __name__ == "__main__":

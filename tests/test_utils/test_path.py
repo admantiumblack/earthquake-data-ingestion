@@ -37,4 +37,4 @@ class TestRootDirectory:
         mocker.patch.dict("sys.modules", {"__main__": dir_mock})
         mock_attr(False, None)
         res = get_root_directory()
-        assert res == Path('/test')
+        assert res == Path("/test")
