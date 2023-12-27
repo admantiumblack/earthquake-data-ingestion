@@ -14,6 +14,14 @@ class RepositoryBaseClass(ABC):  # pragma: no cover
 
         return file_method_by_type[file_type]
 
+    def _get_mime_type(self, file_type):
+        file_mime_by_type = {
+            "csv": "text/csv",
+            "parquet": "application/x-parquet",
+        }
+
+        return file_mime_by_type[file_type]
+
     @abstractmethod
     def save(self, data: pd.DataFrame, file_name: str, file_type: str = None, **kwargs):
         raise NotImplementedError()

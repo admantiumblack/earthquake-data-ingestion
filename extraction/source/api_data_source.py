@@ -53,7 +53,7 @@ class APIDataSource(DataSource):
     def clean_data(self):
         try:
             if not self.data_valid:
-                raise RuntimeError("data invalid")
+                raise RuntimeError(f"data invalid {self.validator.errors}")
         except AttributeError:
             raise AttributeError("data is not validated")
 

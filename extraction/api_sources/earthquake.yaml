@@ -1,4 +1,3 @@
-version: "1.0.0"
 url: "https://earthquake.usgs.gov/fdsnws/event/1/query"
 defaults:
   format: "geojson"

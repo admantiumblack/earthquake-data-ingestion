@@ -4,15 +4,24 @@ services:
   ingestion:
     build:
       context: .
-      target: deploy
+      target: build
     links:
       - storage_emulator
     depends_on:
       - storage_emulator
     environment:
-      STORAGE_EMULATOR_HOST="https://storage_emulator:9023"
+      - STORAGE_EMULATOR_HOST=http://storage_emulator:9023
+      - GOOGLE_APPLICATION_CREDENTIALS=/credentials.json
+    env_file:
+      - .env
+    volumes:
+      - ./credentials.json.example:/credentials.json
+    command: 2023-11-22T00:00:00 2023-11-22T05:00:00 -f csv -n 2023-11-22.csv -s gcs
   storage_emulator:
     image: oittaa/gcp-storage-emulator
-    entrypoint: gcp-storage-emulator start --host=localhost --port=9023 --default-bucket=earthquake_bucket
+    entrypoint: gcp-storage-emulator start --host=0.0.0.0 --port=9023 --default-bucket=earthquake_bucket
+    environment:
+      - STORAGE_BASE=/
+      - STORAGE_DIR=.cloudstorage
     volumes:
-      - ./.storage:/.cloudstorage
+      - ./.storage/:/.cloudstorage/

@@ -20,22 +20,21 @@ class TestRootDirectory:
         def attr_mocker(getattr_value, hasattr_value=None):
             mocker.patch("sys.frozen", getattr_value, create=True)
             if hasattr_value is not None:
-                mocker.patch("sys._MEIPASS", hasattr_value, create=True)
+                mocker.patch("sys.executable", hasattr_value, create=True)
 
         return attr_mocker
 
     def test_is_frozen(self, mocker: MockerFixture, mock_attr):
-        root_dir = "test"
+        root_dir = "/test"
         mock_attr(True, root_dir)
         res = get_root_directory()
-        assert res == Path("test")
+        assert res == Path("/")
 
-    @pytest.mark.parametrize("get_value,has_value", [(True, None), (False, "test")])
-    def test_not_frozen(self, mocker: MockerFixture, mock_attr, get_value, has_value):
-        root_dir = "test"
+    def test_not_frozen(self, mocker: MockerFixture, mock_attr):
+        root_dir = "/test/test"
         dir_mock = mocker.Mock()
         dir_mock.__file__ = root_dir
         mocker.patch.dict("sys.modules", {"__main__": dir_mock})
-        mock_attr(get_value, has_value)
+        mock_attr(False, None)
         res = get_root_directory()
-        assert res == Path(root_dir)
+        assert res == Path("/test")

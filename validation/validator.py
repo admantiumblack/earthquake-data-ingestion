@@ -8,5 +8,6 @@ def create_validator(schema: str | dict):
         file_name = resolve_path(f"validation/schema/{schema}.json")
         with open(file_name, "r") as f:
             schema = json.load(f)
-
-    return Validator(schema)
+    validator = Validator(schema)
+    validator.allow_unknown = True
+    return validator

@@ -3,3 +3,4 @@ Dockerfile
 .storage/
 .github/
 pyproject.toml
+credentials.json.example

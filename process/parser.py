@@ -3,7 +3,7 @@ from process import steps
 
 def parse_steps(step_definitions: list[dict]):
     step_list = []
-    for step_definition in step_definitions:
+    for step_definition in step_definitions["steps"]:
         try:
             step = getattr(steps, step_definition["run"])
         except KeyError:
